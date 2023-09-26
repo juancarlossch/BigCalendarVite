@@ -1,0 +1,54 @@
+.Calendar {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 4rem auto 0;
+    border: 1px solid black;
+    border-radius:  10px;
+
+}
+
+.Calendar th,
+.Calendar td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.Day:hover {
+    background: #eee;
+    color: #000;
+}
+.month-header ,.nav-inner {
+    background-color: #ffffff;
+}
+.month-header{
+    border: 1px solid black;
+
+}
+.DayOfWeek{
+    border: 1px solid black;
+}
+
+.Day.today {
+    background: #666;
+    color: #fff;
+}
+
+.Day.selected {
+    background: #29b965;
+    color: #fff;
+}
+
+.Day.other-month {
+    background: #fafafa;
+    color: #aaa;
+}
+button{
+    background-color: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
