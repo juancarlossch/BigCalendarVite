@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./customToolbar.css";
 
-const CustomToolbar = ({ date, onNavigate }) => {
+const CustomToolbarP = ({ date, onNavigate }) => {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -64,10 +64,10 @@ const CustomToolbar = ({ date, onNavigate }) => {
   );
 };
 
-CustomToolbar.propTypes = {
+CustomToolbarP.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
   newSelectedMonth: PropTypes.instanceOf(Date),
   onNavigate: PropTypes.func.isRequired,
 };
 
-export default CustomToolbar;
+export default CustomToolbarP;

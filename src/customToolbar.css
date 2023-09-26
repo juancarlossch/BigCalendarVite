@@ -20,8 +20,8 @@
 .custom-toolbar button {
   background-color: transparent;
   color: rgb(0, 0, 0);
-  border: none;
   transition: all 300ms;
+  width: 50px;
 }
 
 .custom-toolbar button:hover {

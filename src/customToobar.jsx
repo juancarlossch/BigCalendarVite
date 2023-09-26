@@ -1,37 +1,49 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./customToolbar.css";
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
 
 const CustomToolbar = ({ date, onNavigate }) => {
   const [selectedMonth, setSelectedMonth] = useState(date);
-  const [selectedMonthDays, setSelectedMonthDays] = useState([]);
 
   useEffect(() => {
     const firstDay = startOfMonth(selectedMonth);
     const lastDay = endOfMonth(selectedMonth);
     const days = eachDayOfInterval({ start: firstDay, end: lastDay });
-    setSelectedMonthDays(days);
     onNavigate(selectedMonth, "DATE");
   }, [selectedMonth, onNavigate]);
 
   const handlePrevMonth = () => {
     const prevMonth = subMonths(selectedMonth, 1);
+    alert("previo: ", prevMonth);
     setSelectedMonth(prevMonth);
   };
 
   const handleNextMonth = () => {
     const nextMonth = addMonths(selectedMonth, 1);
+    alert("siguiente: ", nextMonth);
     setSelectedMonth(nextMonth);
+  };
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    const [year, month] = inputValue.split("-");
+    const selectedDate = new Date(year, month - 1, 1);
+    setSelectedMonth(selectedDate);
   };
 
   return (
     <div className="custom-toolbar">
-      <button onClick={handlePrevMonth}>{"<"}</button>
+      <button type="button" onClick={handlePrevMonth}>{"<"}</button>
       <span className="custom-toolbar-month">
         {format(selectedMonth, "MMMM yyyy")}
       </span>
-      <button onClick={handleNextMonth}>{">"}</button>
+      <input
+        type="month"
+        value={selectedMonth ? selectedMonth.toISOString().slice(0, 7) : ""}
+        onChange={handleInputChange}
+      />
+      <button type="button" onClick={handleNextMonth}>{">"}</button>
       <div className="calendar-days">
         {/* {selectedMonthDays.map((day) => (
           <div key={day} >
