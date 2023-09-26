@@ -5,23 +5,23 @@ import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterv
 
 const CustomToolbar = ({ date, onNavigate }) => {
   const [selectedMonth, setSelectedMonth] = useState(date);
+  const [diasMes, setDiasMes] = useState(date);
 
   useEffect(() => {
     const firstDay = startOfMonth(selectedMonth);
     const lastDay = endOfMonth(selectedMonth);
     const days = eachDayOfInterval({ start: firstDay, end: lastDay });
+    setDiasMes(days);
     onNavigate(selectedMonth, "DATE");
   }, [selectedMonth, onNavigate]);
 
   const handlePrevMonth = () => {
     const prevMonth = subMonths(selectedMonth, 1);
-    alert("previo: ", prevMonth);
     setSelectedMonth(prevMonth);
   };
 
   const handleNextMonth = () => {
     const nextMonth = addMonths(selectedMonth, 1);
-    alert("siguiente: ", nextMonth);
     setSelectedMonth(nextMonth);
   };
 
@@ -45,11 +45,11 @@ const CustomToolbar = ({ date, onNavigate }) => {
       />
       <button type="button" onClick={handleNextMonth}>{">"}</button>
       <div className="calendar-days">
-        {/* {selectedMonthDays.map((day) => (
+        {diasMes.map((day) => (
           <div key={day} >
             {format(day, "d")}
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );
